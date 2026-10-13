@@ -1,1 +1,369 @@
-<!DOCTYPE html><html style="height: 100%;"><body style="height: 100%; margin: 0;"><iframe src="https://copilotstudio.microsoft.com/environments/Default-9ef36566-f756-4f11-9c5f-307c10f409f9/bots/cre46_aicreativeagentteam_GHVh4l/webchat?__version__=2&enableFileAttachment=false&cliAgent=true" frameborder="0" style="width: 100%; height: 100%; border: 0;"></iframe></body></html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+  <title>Creative AI Studio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F8F5EF;
+      --surface: #FFFDF9;
+      --primary: #B87B61;
+      --primary-light: #F7E7DC;
+      --text: #38332F;
+      --muted: #8E8178;
+      --border: #EDE5DC;
+      --shadow: 0 16px 48px rgba(93, 73, 56, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(
+          ellipse at 0% 0%,
+          rgba(245, 216, 195, .45),
+          transparent 42%
+        ),
+        radial-gradient(
+          ellipse at 100% 100%,
+          rgba(233, 223, 204, .4),
+          transparent 40%
+        ),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .app {
+      width: min(1180px, 100%);
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0 auto;
+      padding: 28px 32px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* 상단 브랜드 영역 */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 25px;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-description {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .top-label {
+      border-radius: 100px;
+      padding: 9px 16px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-size: 11px;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* 인사말 */
+    .welcome {
+      padding: 10px 3px 0;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: "Gowun Dodum", sans-serif;
+      font-size: clamp(25px, 3vw, 36px);
+      font-weight: 400;
+      letter-spacing: -1.3px;
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .highlight {
+      color: var(--primary);
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 12px 0 0;
+    }
+
+    /* 채팅 카드 */
+    .chat-card {
+      flex: 1;
+      min-height: 540px;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 22px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 253, 249, .96);
+    }
+
+    .assistant-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .assistant-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .assistant-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .header-decoration {
+      display: flex;
+      gap: 6px;
+    }
+
+    .header-decoration span {
+      height: 7px;
+      width: 7px;
+      border-radius: 50%;
+      background: #E2C7B5;
+    }
+
+    .header-decoration span:nth-child(2) {
+      background: #D5BBA9;
+    }
+
+    .header-decoration span:nth-child(3) {
+      background: #EAE0D5;
+    }
+
+    .chat-content {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      background: #FFFFFF;
+    }
+
+    .chat-content iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      border: none;
+      background: white;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: #A3978C;
+      padding-bottom: 4px;
+      letter-spacing: .2px;
+    }
+
+    /* 모바일 반응형 */
+    @media (max-width: 640px) {
+      .app {
+        padding: 14px 12px 12px;
+        gap: 16px;
+      }
+
+      .topbar {
+        padding: 2px 4px;
+      }
+
+      .brand-icon {
+        width: 39px;
+        height: 39px;
+        border-radius: 12px;
+      }
+
+      .brand-name {
+        font-size: 14px;
+      }
+
+      .top-label {
+        display: none;
+      }
+
+      .welcome {
+        padding: 4px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .subtitle {
+        font-size: 12px;
+      }
+
+      .chat-card {
+        min-height: 65dvh;
+        border-radius: 18px;
+      }
+
+      .chat-header {
+        padding: 12px 15px;
+      }
+
+      .footer {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">✳</div>
+
+        <div>
+          <div class="brand-name">
+            Creative AI Studio
+          </div>
+          <div class="brand-description">
+            함께 생각하는 AI 파트너
+          </div>
+        </div>
+      </div>
+
+      <div class="top-label">
+        YOUR CREATIVE SPACE
+      </div>
+    </header>
+
+    <section class="welcome">
+      <div class="eyebrow">
+        A SPACE FOR YOUR IDEAS
+      </div>
+
+      <h1>
+        오늘은 어떤 생각을
+        <span class="highlight">나눠볼까요?</span>
+      </h1>
+
+      <p class="subtitle">
+        작은 질문에서 시작해 새로운 가능성을 발견해 보세요.<br>
+        당신의 생각을 함께 확장해 나가겠습니다.
+      </p>
+    </section>
+
+    <section class="chat-card" aria-label="AI 대화 공간">
+
+      <div class="chat-header">
+        <div class="assistant-info">
+          <div class="avatar" aria-hidden="true">✦</div>
+
+          <div>
+            <div class="assistant-name">
+              AI 어시스턴트
+            </div>
+            <div class="assistant-subtitle">
+              편안하게 대화를 시작해 보세요
+            </div>
+          </div>
+        </div>
+
+        <div class="header-decoration" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="chat-content">
+        <iframe
+          title="Copilot Studio AI Chat"
+          src="https://copilotstudio.microsoft.com/environments/Default-9ef36566-f756-4f11-9c5f-307c10f409f9/bots/cre46_aicreativeagentteam_GHVh4l/webchat?__version__=2&amp;enableFileAttachment=false&amp;cliAgent=true"
+          allow="clipboard-write"
+        ></iframe>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      Made for curious minds · Powered by Microsoft Copilot Studio
+    </footer>
+
+  </main>
+</body>
+</html>
